@@ -11,13 +11,14 @@ script:
   - docker run -e CI=true codiemullins/docker-react npm run test
 
 deploy:
+  edge: true
   provider: elasticbeanstalk
-  region: us-east-1
-  app: docker-react
-  env: Dockerreact-env
-  bucket_name: elasticbeanstalk-us-east-1-687710132501
-  bucket_path: docker-react
-  on:
-    branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
+  region: us-east-1
+  app: travis-cd
+  env: travis-cd-env
+  bucket: elasticbeanstalk-us-east-1-687710132501
+  bucket_path: travis-cd
+  on:
+    branch: main
